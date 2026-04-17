@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 //////////////////////////////////////////////////
 
 Route::view('/', 'home');
-Route::view('/kontrakan', 'kontrakan.index');
+Route::get('/kontrakan', [KontrakanController::class, 'index']);
 Route::view('/kontrakan/detail', 'kontrakan.detail');
 
 
