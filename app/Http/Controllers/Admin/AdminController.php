@@ -235,32 +235,34 @@ public function approveBooking($id)
 {
     $booking = Booking::with('kontrakan')->findOrFail($id);
 
-    // update status
+    // approve booking
     $booking->update([
         'status' => 'approved',
     ]);
 
-    // format nomor WA
+    // format nomor
     $nomor = $booking->no_hp;
 
-    // ubah 08 menjadi 628
     if (substr($nomor, 0, 1) == '0') {
         $nomor = '62' . substr($nomor, 1);
     }
 
-    // pesan WA
+    // pesan whatsapp
     $pesan = urlencode(
         "Halo, booking kontrakan Anda telah DISETUJUI.\n\n" .
         "Kontrakan: {$booking->kontrakan->nama}\n" .
         "Lama sewa: {$booking->lama_sewa} bulan\n" .
-        "Total pembayaran: Rp " . number_format($booking->total_harga, 0, ',', '.') . "\n\n" .
-        "Terima kasih."
+        "Total pembayaran: Rp " .
+        number_format($booking->total_harga, 0, ',', '.') .
+        "\n\nTerima kasih."
     );
 
-    // redirect ke whatsapp
-    return redirect(
-        "https://wa.me/{$nomor}?text={$pesan}"
-    );
+    $waLink = "https://wa.me/{$nomor}?text={$pesan}";
+
+    return redirect()
+        ->route('admin.booking.index')
+        ->with('success', 'Booking berhasil disetujui.')
+        ->with('wa_link', $waLink);
 }
 
 public function reject($id)

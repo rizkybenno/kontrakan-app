@@ -182,19 +182,19 @@
 
                                     <!-- APPROVE -->
                                     <form method="POST"
-                                          action="{{ route('admin.booking.approve', $booking->id) }}">
+      action="{{ route('admin.booking.approve', $booking->id) }}">
 
-                                        @csrf
-                                        @method('PUT')
+    @csrf
+    @method('PUT')
 
-                                        <button type="submit"
-                                                class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg text-xs">
+    <button type="submit"
+            class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-lg text-xs">
 
-                                            Approve
+        Approve
 
-                                        </button>
+    </button>
 
-                                    </form>
+</form>
 
                                     <!-- REJECT -->
                                     <form method="POST"
@@ -242,5 +242,22 @@
     </div>
 
 </div>
+
+@if(session('wa_link'))
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    window.open(
+        "{{ session('wa_link') }}",
+        "_blank"
+    );
+
+});
+</script>
+
+@endif
+
+
 
 @endsection
