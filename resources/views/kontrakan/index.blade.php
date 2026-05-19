@@ -46,44 +46,6 @@ $isAdmin = auth()->check() && auth()->user()->is_admin;
 
     
 
-    @auth
-
-    @if($punyaKontrakan)
-        {{-- USER SUDAH PUNYA KONTRAKAN --}}
-        <a href="{{ route('kontrakan.saya') }}"
-           class="bg-green-600 text-white px-5 py-3 rounded-lg hover:bg-green-700 transition">
-            🏠 Lihat & edit Kontrakan Saya
-        </a>
-    @else
-        {{-- USER BELUM PUNYA KONTRAKAN --}}
-        <!-- AJUKAN KONTRAKAN -->
-<div class="bg-white rounded-2xl shadow p-6 mb-8 flex items-center justify-between">
-
-    <div>
-        <h3 class="text-xl font-bold text-gray-800">
-            Punya Kontrakan?
-        </h3>
-
-        <p class="text-gray-500 text-sm mt-1">
-            Ajukan kontrakan Anda untuk dipromosikan di website.
-        </p>
-    </div>
-        <a href="{{ route('kontrakan.pengajuan') }}"
-           class="bg-amber-700 text-white px-5 py-3 rounded-lg hover:bg-amber-800 transition">
-            + Ajukan Kontrakan
-        </a>
-    @endif
-
-@else
-    {{-- USER BELUM LOGIN --}}
-    <a href="{{ route('login') }}"
-       class="bg-gray-800 text-white px-5 py-3 rounded-lg hover:bg-gray-900 transition">
-        Login untuk Mengajukan
-    </a>
-@endauth
-
-</div>
-
     <!-- BUTTON ADMIN -->
     @if($isAdmin)
     <a href="{{ route('admin.kontrakan.create') }}"

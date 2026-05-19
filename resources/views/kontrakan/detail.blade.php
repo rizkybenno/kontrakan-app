@@ -53,74 +53,7 @@ $isAdmin = auth()->check() && auth()->user()->is_admin;
     {{ $kontrakan->deskripsi }}
 </div>
 
-{{-- ================= KETERSEDIAAN KAMAR ================= --}}
-<div class="mt-8">
 
-    <h3 class="text-lg font-bold text-gray-800 mb-4">
-        Ketersediaan Kamar
-    </h3>
-
-    <div class="space-y-3">
-
-        @forelse($kontrakan->kamars as $kamar)
-
-            <div class="border rounded-xl p-4 flex justify-between items-center">
-
-                <div>
-
-                    <h4 class="font-semibold text-gray-800">
-                        {{ $kamar->nama_kamar }}
-                    </h4>
-
-                    <p class="text-sm text-gray-500 mt-1">
-                        Rp {{ number_format($kamar->harga,0,',','.') }} / bulan
-                    </p>
-
-                    @if($kamar->deskripsi)
-                        <p class="text-sm text-gray-400 mt-1">
-                            {{ $kamar->deskripsi }}
-                        </p>
-                    @endif
-
-                </div>
-
-                <div>
-
-                    @if($kamar->status == 'tersedia')
-
-                        <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium">
-                            Tersedia
-                        </span>
-
-                    @elseif($kamar->status == 'dibooking')
-
-                        <span class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm font-medium">
-                            Dibooking
-                        </span>
-
-                    @else
-
-                        <span class="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-medium">
-                            Terisi
-                        </span>
-
-                    @endif
-
-                </div>
-
-            </div>
-
-        @empty
-
-            <div class="border rounded-xl p-5 text-center text-gray-500">
-                Belum ada data kamar
-            </div>
-
-        @endforelse
-
-    </div>
-
-</div>
 
 <a href="{{ url('/booking/'.$kontrakan->id) }}"
    class="block mt-6 text-center bg-amber-700 text-white py-3 rounded-lg hover:bg-amber-800">

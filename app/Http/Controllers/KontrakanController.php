@@ -254,7 +254,7 @@ public function updateUserKontrakan(Request $request)
 
             ->get();
 
-        return view('home', compact(
+        return view('dashboard', compact(
             'rekomendasi'
         ));
     }

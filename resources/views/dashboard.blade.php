@@ -38,53 +38,6 @@
 
 </div>
 
-{{-- ================= AJUKAN / KONTRAKAN SAYA ================= --}}
-<div class="bg-white rounded-xl shadow p-5 mb-8 border border-gray-100">
-
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
-
-        <div>
-            <h3 class="text-xl font-bold text-gray-800">
-                Punya Kontrakan?
-            </h3>
-
-            <p class="text-sm text-gray-500 mt-1">
-                Promosikan kontrakan Anda dan temukan penyewa lebih mudah.
-            </p>
-        </div>
-
-        @auth
-
-            @if($punyaKontrakan)
-
-                {{-- USER SUDAH PUNYA KONTRAKAN --}}
-                <a href="{{ route('kontrakan.saya') }}"
-                   class="bg-green-600 hover:bg-green-700 text-white px-5 py-3 rounded-lg transition">
-                    🏠 Lihat & Edit Kontrakan Saya
-                </a>
-
-            @else
-
-                {{-- USER BELUM PUNYA KONTRAKAN --}}
-                <a href="{{ route('kontrakan.pengajuan') }}"
-                   class="bg-amber-700 hover:bg-amber-800 text-white px-5 py-3 rounded-lg transition">
-                    + Ajukan Kontrakan
-                </a>
-
-            @endif
-
-        @else
-
-            {{-- BELUM LOGIN --}}
-            <a href="{{ route('login') }}"
-               class="bg-gray-800 hover:bg-gray-900 text-white px-5 py-3 rounded-lg transition">
-                Login untuk Mengajukan
-            </a>
-
-        @endauth
-
-    </div>
-
 </div>
 
 
